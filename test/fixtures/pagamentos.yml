@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_parcelas: 
+  tipo_pagamento_id: 
+
+two:
+  num_parcelas: 
+  tipo_pagamento_id: 

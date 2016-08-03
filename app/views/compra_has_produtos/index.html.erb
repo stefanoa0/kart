@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Compra Has Produtos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Compra</th>
+      <th>Produto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compra_has_produtos.each do |compra_has_produto| %>
+      <tr>
+        <td><%= compra_has_produto.compra %></td>
+        <td><%= compra_has_produto.produto %></td>
+        <td><%= link_to 'Show', compra_has_produto %></td>
+        <td><%= link_to 'Edit', edit_compra_has_produto_path(compra_has_produto) %></td>
+        <td><%= link_to 'Destroy', compra_has_produto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compra has produto', new_compra_has_produto_path %>

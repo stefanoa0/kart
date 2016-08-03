@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @compra.data %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @compra.quantidade %>
+</p>
+
+<p>
+  <strong>Pagamento:</strong>
+  <%= @compra.pagamento %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @compra.cliente %>
+</p>
+
+<%= link_to 'Edit', edit_compra_path(@compra) %> |
+<%= link_to 'Back', compras_path %>

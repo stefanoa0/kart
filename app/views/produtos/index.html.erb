@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Todos os Produtos</h3>
+
+<div class="row">
+	<% @produtos.each do |produto| %>
+	<div class="col s12 m6 l4">
+		<div class="card">
+			<div class="card-image">
+				<%= image_tag produto.imagem.url(:medium) %>
+				<span class="card-title red-text text-darken-4 bold-text"><%= produto.nome%></span>
+			</div>
+			<div class="card-content">
+				<p>
+					<%= produto.descricao %>
+				</p>
+				<p>
+					R$ <%= produto.preco %>
+				</p>
+			</div>
+					
+			<div class="card-action">
+				
+				<a href="#">Comprar</a>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>

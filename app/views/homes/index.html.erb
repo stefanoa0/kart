@@ -1,0 +1,40 @@
+<div classo="row">
+	<h3 class="flow-text bold"> Produtos em Destaque </h3>
+</div>
+<div class="row">
+	<% @produtos.each do |produto| %>
+	<div class="col s12 m6 l4">
+		<div class="card">
+			<div class="card-image">
+				<%= image_tag produto.imagem.url(:medium) %>
+				<span class="card-title red-text text-darken-4 bold-text"><%= produto.nome%></span>
+			</div>
+			<div class="card-content">
+				<p>
+					<%= produto.descricao %>
+				</p>
+				<p>
+					R$ <%= produto.preco %>
+				</p>
+			</div>
+					
+			<div class="card-action">
+				
+				<a href="#">Comprar</a>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+<% if current_user %> 
+  <ul> 
+    <li><%= current_user.email %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  </ul> 
+<% else %> 
+  <ul> 
+    <li><%= link_to "Login", 'login' %></a></li> 
+    <li><%= link_to "Signup", 'signup' %></a></li> 
+  </ul> 
+<% end %>

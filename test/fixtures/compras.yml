@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2016-07-26 13:47:26
+  quantidade: 
+  pagamento_id: 
+  cliente_id: 
+
+two:
+  data: 2016-07-26 13:47:26
+  quantidade: 
+  pagamento_id: 
+  cliente_id: 

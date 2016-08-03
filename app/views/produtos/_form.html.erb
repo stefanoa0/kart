@@ -1,0 +1,79 @@
+<%= form_for(@produto) do |f| %>
+<% if @produto.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+
+	<ul>
+		<% @produto.errors.full_messages.each do |message| %>
+		<li>
+			<%= message %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<div class="row">
+
+	<div class="col s12 m12 l4">
+		<div class="input-field">
+			<div class="input-field">
+
+				<%= f.select(:categoria_produto_id, CategoriaProduto.all.collect {|r| [r.nome_categoria , r.id]}, :include_blank => true) %>
+				<%= f.label :categoria_produto %>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col s12 m12 l5">
+		<div class="input-field">
+			<div class="field">
+				<%= f.label :nome %>
+				<%= f.text_field :nome %>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l3">
+		<div class="input-field">
+			<div class="field">
+				<%= f.label :preco %>
+				<%= f.text_field :preco %>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+
+	<div class="col s12 m12 l12">
+		<div class="input-field">
+			<%= f.label :descricao %>
+			<br/>
+			<br/>
+			<%= f.text_area :descricao %>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l12">
+		<div class="file-field input-field">
+			<div class="btn">
+				<span>Arquivo <i class="material-icons right">file_upload</i></span>
+				<%= f.file_field :imagem %>
+			</div>
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text" placeholder="Selecione um arquivo...">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s6 m6 l6 offset-l10-m10-s10">
+		<button class="btn waves-effect waves-light" type="submit" name="action">
+			Submit <i class="material-icons right">send</i>
+		</button>
+	</div>
+</div>
+<% end %>

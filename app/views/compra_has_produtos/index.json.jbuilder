@@ -1,0 +1,1 @@
+json.array! @compra_has_produtos, partial: 'compra_has_produtos/compra_has_produto', as: :compra_has_produto
