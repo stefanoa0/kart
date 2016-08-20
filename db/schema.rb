@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802142406) do
+ActiveRecord::Schema.define(version: 20160820182140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20160802142406) do
     t.integer  "produto_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cliente_id"
   end
 
+  add_index "compra_has_produtos", ["cliente_id"], name: "index_compra_has_produtos_on_cliente_id", using: :btree
   add_index "compra_has_produtos", ["compra_id"], name: "index_compra_has_produtos_on_compra_id", using: :btree
   add_index "compra_has_produtos", ["produto_id"], name: "index_compra_has_produtos_on_produto_id", using: :btree
 
@@ -51,13 +53,14 @@ ActiveRecord::Schema.define(version: 20160802142406) do
     t.integer  "cliente_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "endereco_id"
   end
 
   add_index "compras", ["cliente_id"], name: "index_compras_on_cliente_id", using: :btree
+  add_index "compras", ["endereco_id"], name: "index_compras_on_endereco_id", using: :btree
   add_index "compras", ["pagamento_id"], name: "index_compras_on_pagamento_id", using: :btree
 
   create_table "enderecos", force: :cascade do |t|
-    t.integer  "cliente_id"
     t.string   "rua"
     t.string   "bairro"
     t.string   "numero"
@@ -65,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160802142406) do
     t.string   "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cliente_id"
   end
 
   add_index "enderecos", ["cliente_id"], name: "index_enderecos_on_cliente_id", using: :btree
@@ -123,9 +127,11 @@ ActiveRecord::Schema.define(version: 20160802142406) do
   end
 
   add_foreign_key "clientes", "logins"
+  add_foreign_key "compra_has_produtos", "clientes"
   add_foreign_key "compra_has_produtos", "compras"
   add_foreign_key "compra_has_produtos", "produtos"
   add_foreign_key "compras", "clientes"
+  add_foreign_key "compras", "enderecos"
   add_foreign_key "compras", "pagamentos"
   add_foreign_key "enderecos", "clientes"
   add_foreign_key "pagamentos", "tipo_pagamentos"

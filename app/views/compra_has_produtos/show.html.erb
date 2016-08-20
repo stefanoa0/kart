@@ -1,14 +1,115 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Compra:</strong>
-  <%= @compra_has_produto.compra %>
+<p id="notice">
+	<%= notice %>
 </p>
 
-<p>
-  <strong>Produto:</strong>
-  <%= @compra_has_produto.produto %>
-</p>
+<div class="row">
 
-<%= link_to 'Edit', edit_compra_has_produto_path(@compra_has_produto) %> |
-<%= link_to 'Back', compra_has_produtos_path %>
+	<div class="col s12 m6 l3">
+		<div class="card">
+			<div class="card-image">
+				<%= image_tag @produto.imagem.url(:medium) %>
+				<span class="card-title red-text text-darken-4 bold-text"><b><%= @produto.nome%></b></span>
+			</div>
+			<div class="card-content">
+				<p>
+					<%= @produto.descricao %>
+				</p>
+				<p>
+					R$ <%= @produto.preco %>
+				</p>
+			</div>
+		</div>
+	</div>
+	<%= form_for(@compra) do |f| %>
+	<div class="col s12 m6 l3">
+		<div class="card">
+			<div class="card-content">
+				<span class="card_title red-text text-darken-4 bold-text"><b>Quantidade</b></span>
+				<div class="field">
+
+					<%= text_field_tag :quantidade,nil, :value => 1 %>
+				</div>
+				<div id="total">
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="col s12 m6 l3">
+		<div class="card">
+			<div class="card-content">
+				<span class="card_title red-text text-darken-4 bold-text"><b>Tipo de Pagamento</b></span>
+				<div class="field">
+
+					<%= select_tag :tipo_pagamento_id, options_for_select(TipoPagamento::PAGAMENTO.collect {|pg| [pg[0], pg[0]]}), :include_blank => true %>
+				</div>
+				<div class="field">
+					<%= label_tag "Número de Parcelas" %>
+					<%= text_field_tag :num_parcelas %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col s12 m6 l3">
+		<div class="card">
+			<div class="card-content">
+				<span class="card_title red-text text-darken-4 bold-text"><b>Endereço de Entrega</b></span>
+				<div class="field">
+					<%= label_tag :rua %>
+					<br>
+					<%= text_field_tag :rua %>
+				</div>
+				<div class="field">
+					<%= label_tag :bairro %>
+					<br>
+					<%= text_field_tag :bairro %>
+				</div>
+				<div class="field">
+					<%= label_tag :numero %>
+					<br>
+					<%= text_field_tag :numero %>
+				</div>
+				<div class="field">
+					<%= label_tag :cidade %>
+					<br>
+					<%= text_field_tag :cidade %>
+				</div>
+				<div class="field">
+					<%= label_tag :estado %>
+					<br>
+					<%= select_tag :estado, options_for_select(Endereco::UF.collect {|uf| [uf[0], uf[0]]}), :include_blank => true %>
+				</div>
+				<div class="actions right-align">
+					<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
+						Salvar <i class="material-icons right">add_shopping_cart</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+<script>
+
+	$(document).ready(function(){
+$('#total').html("Valor Total = R$ " + addCommas($('#quantidade').val() * <%= @produto.preco %>) )
+$('#quantidade').change(function(){
+$('#total').html("Valor Total = R$ " + addCommas($('#quantidade').val() * <%= @produto.preco %>
+	) )
+	});
+	});
+
+	function addCommas(nStr) {
+		nStr += '';
+		x = nStr.split(',');
+		x1 = x[0];
+		x2 = x.length > 1 ? ',' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + '.' + '$2');
+		}
+		return x1 + x2;
+	}
+</script>

@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :compra_has_produtos
+  
+  resources :enderecos
   resources :compras
   resources :pagamentos
   resources :produtos
   resources :categoria_produtos
   resources :tipo_pagamentos
+  resources :compra_has_produtos
   
   get 'signup'  => 'clientes#new' 
   resources :clientes
+    
   resources :homes
-
+  
   root 'homes#index'
+  
+  #get 'cliente_produto/:produto_id/:cliente_id' => 'compra_has_produtos#create'
   
   get '/login' => 'session#new'
   post 'login' => 'session#create'

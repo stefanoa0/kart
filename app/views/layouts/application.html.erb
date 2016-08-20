@@ -7,7 +7,7 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
-<!--
+
 		<header>
 			<nav>
 				<a href="<%= root_path %>" class="brand-logo">Fast Kart</a>
@@ -52,18 +52,39 @@
 						</li>
 						<% end %>
 					</ul>
+					<li>
+								<% if current_user %>
+								<ul>
+									<li>
+										Bem vindo: <%= current_user.nome %>
+									</li>
+									<li>
+										<%= link_to "Log out", logout_path, method: "delete" %>
+									</li>
+								</ul>
+								<% else %>
+								<ul>
+									<li>
+										<%= link_to "Login", 'login' %></a>
+									</li>
+									<li>
+										<%= link_to "Signup", 'signup' %></a>
+									</li>
+								</ul>
+								<% end %>
+							</li>
 				</ul>
 				<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 			</nav>
 		</header>
--->
+
 		<main>
 			<div class="container">
 
 				<%= yield %>
 			</div>
 		</main>
-<!--
+
 		<footer class="page-footer">
 			<div class="container">
 				<div class="row">
@@ -85,7 +106,7 @@
 							<li>
 								<a class="grey-text text-lighten-3" href="<%= clientes_path %>">Clientes</a>
 							</li>
-
+							
 						</ul>
 					</div>
 				</div>
@@ -97,7 +118,7 @@
 				</div>
 			</div>
 		</footer>
--->
+
 	</body>
 </html>
 <script>
@@ -111,7 +132,9 @@
 			belowOrigin : true,
 			constrain_width : false
 		});
-		 $('select').material_select();
-		tinymce.init({ selector:'textarea' });
+		$('select').material_select();
+		tinymce.init({
+			selector : 'textarea'
+		});
 	}); 
 </script>

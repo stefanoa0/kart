@@ -20,8 +20,13 @@
 			</div>
 					
 			<div class="card-action">
-				
-				<a href="#">Comprar</a>
+				<%= hidden_field_tag :produto_id, produto.id %>
+				<%= hidden_field_tag :cliente_id,  current_user.nil? ? '' : current_user.id %>
+				<div class="actions right-align">
+					<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
+						Comprar <i class="material-icons right">add_shopping_cart</i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,13 +1,16 @@
-<div classo="row">
-	<h3 class="flow-text bold"> Produtos em Destaque </h3>
-</div>
+<p id="notice">
+	<%= notice %>
+</p>
+
+<h3>Produtos em destaque</h3>
+
 <div class="row">
 	<% @produtos.each do |produto| %>
 	<div class="col s12 m6 l4">
 		<div class="card">
 			<div class="card-image">
 				<%= image_tag produto.imagem.url(:medium) %>
-				<span class="card-title red-text text-darken-4 bold-text"><%= produto.nome%></span>
+				<span class="card-title red-text text-darken-4 bold-text"><b><%= produto.nome%></b></span>
 			</div>
 			<div class="card-content">
 				<p>
@@ -17,24 +20,20 @@
 					R$ <%= produto.preco %>
 				</p>
 			</div>
-					
+
 			<div class="card-action">
+				<%= form_for(@compra_has_produto) do |f| %>
+				<%= f.hidden_field :produto_id, value: produto.id %>
+				<%= f.hidden_field :cliente_id, value: current_user.nil? ? '' : current_user.id %>
 				
-				<a href="#">Comprar</a>
+				<div class="actions right-align">
+					<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
+						Comprar <i class="material-icons right">add_shopping_cart</i>
+					</button>
+				</div>
+				<% end%>
 			</div>
 		</div>
 	</div>
 	<% end %>
 </div>
-
-<% if current_user %> 
-  <ul> 
-    <li><%= current_user.email %></li> 
-    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
-  </ul> 
-<% else %> 
-  <ul> 
-    <li><%= link_to "Login", 'login' %></a></li> 
-    <li><%= link_to "Signup", 'signup' %></a></li> 
-  </ul> 
-<% end %>

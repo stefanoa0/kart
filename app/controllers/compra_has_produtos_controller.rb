@@ -10,6 +10,10 @@ class CompraHasProdutosController < ApplicationController
   # GET /compra_has_produtos/1
   # GET /compra_has_produtos/1.json
   def show
+    compra_has_produto = CompraHasProduto.find(@compra_has_produto)
+    @produto = Produto.find(compra_has_produto.produto_id)
+    
+    @compra = Compra.new
   end
 
   # GET /compra_has_produtos/new
@@ -24,6 +28,8 @@ class CompraHasProdutosController < ApplicationController
   # POST /compra_has_produtos
   # POST /compra_has_produtos.json
   def create
+    @produto = params[:produto_id]
+    @cliente = params[:cliente_id]
     @compra_has_produto = CompraHasProduto.new(compra_has_produto_params)
 
     respond_to do |format|
@@ -69,6 +75,6 @@ class CompraHasProdutosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compra_has_produto_params
-      params.require(:compra_has_produto).permit(:compra_id, :produto_id)
+      params.require(:compra_has_produto).permit(:compra_id, :produto_id, :cliente_id)
     end
 end

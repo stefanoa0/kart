@@ -17,12 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :autocomplete => :off  %>
   </div>
+  <% if controller_name == "clientes" and action_name == "new" %> 
   <div class="field">
     <%= f.label :senha %><br>
-    <%= f.text_field :password_digest %>
+    <%= f.password_field :password_digest, :autocomplete => :off  %>
   </div>
+  <% end %>
   <div class="field">
     <%= f.label :cpf %><br>
     <%= f.text_field :cpf %>

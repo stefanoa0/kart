@@ -8,6 +8,7 @@ class HomesController < ApplicationController
   def index
     @homes = Home.all
     @produtos = Produto.all.order(:created_at)
+    @compra_has_produto = CompraHasProduto.new
   end
 
   # GET /homes/1
@@ -18,6 +19,7 @@ class HomesController < ApplicationController
   # GET /homes/new
   def new
     @home = Home.new
+    
   end
 
   # GET /homes/1/edit
