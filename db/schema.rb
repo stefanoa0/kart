@@ -24,15 +24,12 @@ ActiveRecord::Schema.define(version: 20160820182140) do
 
   create_table "clientes", force: :cascade do |t|
     t.string   "nome"
-    t.string   "cpf"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "login_id"
     t.string   "email"
-    t.string   "password_digest"
+    t.string   "senha"
+    t.string   "cpf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "clientes", ["login_id"], name: "index_clientes_on_login_id", using: :btree
 
   create_table "compra_has_produtos", force: :cascade do |t|
     t.integer  "compra_id"
@@ -78,24 +75,6 @@ ActiveRecord::Schema.define(version: 20160820182140) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "logins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "logins", ["email"], name: "index_logins_on_email", unique: true, using: :btree
-  add_index "logins", ["reset_password_token"], name: "index_logins_on_reset_password_token", unique: true, using: :btree
-
   create_table "pagamentos", force: :cascade do |t|
     t.integer  "num_parcelas"
     t.integer  "tipo_pagamento_id"
@@ -126,7 +105,6 @@ ActiveRecord::Schema.define(version: 20160820182140) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "clientes", "logins"
   add_foreign_key "compra_has_produtos", "clientes"
   add_foreign_key "compra_has_produtos", "compras"
   add_foreign_key "compra_has_produtos", "produtos"

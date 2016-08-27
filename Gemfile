@@ -6,11 +6,12 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'material_icons'
 
+
 gem 'materialize-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg', '~> 0.19.0.pre20160820113039'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,8 +30,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'tzinfo-data'
 # Use ActiveModel has_secure_password
- gem 'bcrypt'
+# gem 'bcrypt'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
